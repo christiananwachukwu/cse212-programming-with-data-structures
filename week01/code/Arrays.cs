@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 public static class Arrays
 {
     /// <summary>
@@ -8,12 +10,24 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
+        // TODO Problem 1 Starto
+        // Remember: Using comments in your promgram, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return []; // replace this return statement with your own
+        // step 1 is to create an array with the required length.
+        // step 2 is to use a loop to go through each position in the array.
+        // step 3 is to calculate the multiple for that position.
+        // step 4 is to store the value in the array
+        // step 5 is to return the completed array.
+
+        double[] result = new double[length];
+        for (int i = 0; i < length; i++)
+        {
+            result[i] = number * (i +1);
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -29,5 +43,23 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        // step 1 is to create a temporary array that has the same size as the original list
+        // step 2 is to loop through each element in the original list.
+        // step 3 is to calculate the new position for each element after rotating to the right
+        // step 4 is to store each element in its new position in the temporary array
+        // step 5 is to loop through the temporary array
+        // step 6 is to copy each value back into the original list.
+
+        int[] result = new int[data.Count];
+        for (int i = 0; i < data.Count; i++)
+        {
+            int newIndex = (i + amount) % data.Count;
+            result[newIndex] = data[i];
+        }
+        for (int i = 0; i < data.Count; i++)
+        {
+            data[i] = result[i];
+        }
     }
 }
