@@ -11,8 +11,8 @@ public class CustomerService {
         // Test Cases
 
         // Test 1
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: Add two customers and serve them.
+        // Expected Result: They should be served in FIFO order. 
         Console.WriteLine("Test 1");
 
         // Defect(s) Found: 
@@ -20,8 +20,8 @@ public class CustomerService {
         Console.WriteLine("=================");
 
         // Test 2
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: Create a queue with a maximum size of 2 and try to add a third customer.
+        // Expected Result: The message "Maximum number of customers in queue" should be displayed."
         Console.WriteLine("Test 2");
 
         // Defect(s) Found: 
@@ -67,7 +67,8 @@ public class CustomerService {
     /// </summary>
     private void AddNewCustomer() {
         // Verify there is room in the service queue
-        if (_queue.Count > _maxSize) {
+        if (_queue.Count >= _maxSize) 
+        {
             Console.WriteLine("Maximum Number of Customers in Queue.");
             return;
         }
@@ -88,9 +89,15 @@ public class CustomerService {
     /// Dequeue the next customer and display the information.
     /// </summary>
     private void ServeCustomer() {
-        _queue.RemoveAt(0);
+        if (_queue.Count == 0)
+        {
+            Console.WriteLine("No customer in the queue.");
+            return;
+        }
         var customer = _queue[0];
+        _queue.RemoveAt(0);
         Console.WriteLine(customer);
+        
     }
 
     /// <summary>
