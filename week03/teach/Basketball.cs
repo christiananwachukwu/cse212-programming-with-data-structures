@@ -9,7 +9,7 @@
  * - Points is in column 8
  * 
  * Each row represents the player's stats for a single season with a single team.
- */
+ 0*/
 
 using Microsoft.VisualBasic.FileIO;
 
@@ -27,10 +27,22 @@ public class Basketball
             var fields = reader.ReadFields()!;
             var playerId = fields[0];
             var points = int.Parse(fields[8]);
+            if (players.ContainsKey(playerId))
+            {
+                players[playerId] += points;
+            }
+            else
+            {
+                players[playerId] = points;
+            }
         }
 
-        Console.WriteLine($"Players: {{{string.Join(", ", players)}}}");
-
-        var topPlayers = new string[10];
+        var sortedPlayers = players.ToArray();
+        Array.Sort(sortedPlayers, (a, b) => b.Value.CompareTo(a.Value));
+        Console.WriteLine("Top 10 Players by Career Points");
+        for (int i = 0; i < 10 && i < sortedPlayers.Length; i++)
+        {
+            Console.WriteLine($"{i + 1}.Player {sortedPlayers[i].Key}:{sortedPlayers[i].Value} points");
+        }
     }
 }
