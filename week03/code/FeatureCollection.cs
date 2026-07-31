@@ -19,5 +19,3 @@ public class Properties
     [JsonPropertyName("mag")]
     public double? Mag { get; set; }
 }
-    // TODO Problem 5 - ADD YOUR CODE HERE
-    // Create additional classes as necessary
